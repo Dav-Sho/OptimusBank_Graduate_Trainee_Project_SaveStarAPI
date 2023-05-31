@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SaveStarMoneyAPI.props" />
+</Project>
