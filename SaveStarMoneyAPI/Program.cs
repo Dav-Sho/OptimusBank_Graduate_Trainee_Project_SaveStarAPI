@@ -37,6 +37,7 @@ builder.Services.AddScoped<AccountRepo, AccountService>();
 builder.Services.AddScoped<PercentageSavingRepo, PercentageSavingService>();
 builder.Services.AddScoped<AccountDetailsRepo, AccountDetailsService>();
 builder.Services.AddScoped<GetFixedSavingDetailsRepo, GetFixedSavingsService>();
+builder.Services.AddScoped<GetPercentageDetailsRepo, GetPercentageSavingsDetailServices>();
 
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

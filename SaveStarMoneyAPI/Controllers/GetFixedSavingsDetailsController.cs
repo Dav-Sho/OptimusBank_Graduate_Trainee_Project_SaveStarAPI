@@ -17,7 +17,7 @@ namespace SaveStarMoneyAPI.Controllers
         }
 
         [HttpGet("FixedSavingsDetails")]
-        public async Task<ActionResult<ServiceResponse<List<GetFixedSavingDetailsDto>>>> FixedSavingsDetails()
+        public async Task<ActionResult<ServiceResponse<GetFixedSavingDetailsDto>>> FixedSavingsDetails()
         {
             return Ok(await _getFixedSavingDetailsRepo.GetFixedSavingsDetails());
         }

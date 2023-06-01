@@ -44,28 +44,23 @@ namespace SaveStarMoneyAPI.Service
                 percentageSaving.Frequency = FrequencyType.Monthly;
             }
 
-            var d = DateTime.Now;
             //Duration Logic
             if (percentageSavingDto.Duration.Equals(Duration.ThreeMonth))
             {
                 percentageSaving.Duration = Duration.ThreeMonth;
-                percentageSaving.EndDate = d.AddMonths(3);
+                percentageSaving.EndDate = DateTime.Now.AddMonths(3); 
 
             }
             else if (percentageSavingDto.Frequency.Equals(Duration.SixMonth))
             {
                 percentageSaving.Duration = Duration.SixMonth;
-                percentageSaving.EndDate = d.AddMonths(6);
+                percentageSaving.EndDate = DateTime.Now.AddMonths(6);
             }
             else if (percentageSavingDto.Frequency.Equals(Duration.A_Year))
             {
                 percentageSaving.Duration = Duration.A_Year;
-                percentageSaving.EndDate = d.AddYears(1);
+                percentageSaving.EndDate = DateTime.Now.AddYears(1);
             }
-
-            //var percent = percentageSaving.Percentage / 100;
-
-            //percentageSaving.PercentageAmount = percentageSaving.PercentageAmount + customerAccount!.CurrentAccountBalance;
 
             _context.PercentageSavings.Add(percentageSaving);
             var ch = percentageSaving.Percentage;
@@ -73,18 +68,20 @@ namespace SaveStarMoneyAPI.Service
 
             if (await _context.SaveChangesAsync() > 0)
             {
-                //percentageSaving.PercentageAmount = percentageSaving.PercentageAmount + customerAccount!.CurrentAccountBalance;
-                //percentAmount!.PercentageAmount = (percentageSavingDto.Percentage * customerAccount!.CurrentAccountBalance);
+
                 percentAmount!.PercentageAmount = dff * customerAccount!.CurrentAccountBalance;
 
-                customerAccount!.CurrentAccountBalance -= percentAmount.PercentageAmount;
+                customerAccount!.CurrentAccountBalance = customerAccount!.CurrentAccountBalance - percentAmount.PercentageAmount;
 
+                percentAmount.Account = customerAccount;
 
-                _context.Update(customerAccount);
-                //_context.Update(percentAmount);
+                //_context.Update(customerAccount);
+
+                _context.Update(percentAmount);
                 await _context.SaveChangesAsync();
 
                 response.Data = _mapper.Map<GetPercentSavingDto>(percentageSaving);
+                response.Data.PercentageAmount = percentAmount!.PercentageAmount;
                 response.Success = true;
                 response.StatusCode = HttpStatusCode.Created;
                 response.Message = "Percentage Saving Created";

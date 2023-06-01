@@ -12,6 +12,7 @@ namespace SaveStarMoneyAPI
             CreateMap<PercentageSaving, GetPercentSavingDto>();
             CreateMap<Account, GetAccountDetailsDto>();
             CreateMap<FixedSavingsEntity, GetFixedSavingDetailsDto>();
+            CreateMap<PercentageSaving, GetPercentageSavingsDetailsDto>();
         }
     }
 }

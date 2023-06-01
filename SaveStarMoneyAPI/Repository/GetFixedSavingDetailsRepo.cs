@@ -2,6 +2,6 @@
 {
     public interface GetFixedSavingDetailsRepo
     {
-        Task<ServiceResponse<List<GetFixedSavingDetailsDto>>> GetFixedSavingsDetails();
+        Task<ServiceResponse<GetFixedSavingDetailsDto>> GetFixedSavingsDetails();
     }
 }
