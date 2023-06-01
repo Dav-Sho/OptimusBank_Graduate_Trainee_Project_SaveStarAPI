@@ -24,6 +24,7 @@ namespace SaveStarMoneyAPI.Service
         {
             var response = new ServiceResponse<GetPercentSavingDto>();
             var customerAccount = _context.Accounts.FirstOrDefault(x => x.Id == GetUserId());
+            var percentAmount = _context.PercentageSavings.FirstOrDefault(x => x.Account!.Id == GetUserId());
             var percentageSaving = _mapper.Map<PercentageSaving>(percentageSavingDto);
             percentageSaving.Account = await _context.Accounts.FirstOrDefaultAsync(u => u.Id == GetUserId());
 
@@ -62,18 +63,25 @@ namespace SaveStarMoneyAPI.Service
                 percentageSaving.EndDate = d.AddYears(1);
             }
 
+            //var percent = percentageSaving.Percentage / 100;
+
+            //percentageSaving.PercentageAmount = percentageSaving.PercentageAmount + customerAccount!.CurrentAccountBalance;
+
             _context.PercentageSavings.Add(percentageSaving);
+            var ch = percentageSaving.Percentage;
+            var dff = (percentageSaving.Percentage / 100);
 
             if (await _context.SaveChangesAsync() > 0)
             {
-                percentageSaving.PercentageAmount = percentageSaving.Percentage / 100 * customerAccount!.CurrentAccountBalance;
+                //percentageSaving.PercentageAmount = percentageSaving.PercentageAmount + customerAccount!.CurrentAccountBalance;
+                //percentAmount!.PercentageAmount = (percentageSavingDto.Percentage * customerAccount!.CurrentAccountBalance);
+                percentAmount!.PercentageAmount = dff * customerAccount!.CurrentAccountBalance;
 
-
-                customerAccount!.CurrentAccountBalance -= percentageSaving.PercentageAmount;
+                customerAccount!.CurrentAccountBalance -= percentAmount.PercentageAmount;
 
 
                 _context.Update(customerAccount);
-                _context.Update(percentageSaving.PercentageAmount);
+                //_context.Update(percentAmount);
                 await _context.SaveChangesAsync();
 
                 response.Data = _mapper.Map<GetPercentSavingDto>(percentageSaving);

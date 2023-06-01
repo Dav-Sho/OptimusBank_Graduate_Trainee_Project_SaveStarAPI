@@ -12,7 +12,7 @@ using SaveStarMoneyAPI.Data;
 namespace SaveStarMoneyAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230531153818_Initial")]
+    [Migration("20230601102256_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

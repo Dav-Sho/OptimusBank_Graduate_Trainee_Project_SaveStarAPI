@@ -6,17 +6,17 @@ namespace SaveStarMoneyAPI.Controllers
     [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class FixedController: ControllerBase
+    public class FixedSavingsController: ControllerBase
     {
         private readonly FixedSavingRepo _fixedSavingRepo;
 
-        public FixedController(FixedSavingRepo fixedSavingRepo)
+        public FixedSavingsController(FixedSavingRepo fixedSavingRepo)
         {
             _fixedSavingRepo = fixedSavingRepo;
         }
 
-        [HttpPost("PercentageSavings")]
-        public async Task<ActionResult<ServiceResponse<GetPercentSavingDto>>> Saving(FixedSavingDto fixedSavingDto)
+        [HttpPost("FixedSavings")]
+        public async Task<ActionResult<ServiceResponse<GetFixedSavingDto>>> FixedSavings(FixedSavingDto fixedSavingDto)
         {
             return Ok(await _fixedSavingRepo.FixedSaving(fixedSavingDto));
         }

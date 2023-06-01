@@ -42,23 +42,22 @@ namespace SaveStarMoneyAPI.Service
                 fixedSaving.Frequency = FrequencyType.Monthly;
             }
 
-            var d = DateTime.Now;
             //Duration Logic
             if (fixedSavingDto.Duration.Equals(Duration.ThreeMonth))
             {
                 fixedSaving.Duration = Duration.ThreeMonth;
-                fixedSaving.EndDate = d.AddMonths(3);
+                fixedSaving.EndDate = DateTime.Now.AddMonths(3);
                 
             }
             else if (fixedSavingDto.Frequency.Equals(Duration.SixMonth))
             {
                 fixedSaving.Duration = Duration.SixMonth;
-                fixedSaving.EndDate = d.AddMonths(6);
+                fixedSaving.EndDate = DateTime.Now.AddMonths(6);
             }
             else if (fixedSavingDto.Frequency.Equals(Duration.A_Year))
             {
                 fixedSaving.Duration = Duration.A_Year;
-                fixedSaving.EndDate = d.AddYears(1);
+                fixedSaving.EndDate = DateTime.Now.AddYears(1).Date;
             }
 
             _context.FixedSavings.Add(fixedSaving);

@@ -9,7 +9,7 @@
         public string Frequency { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
         public Account? Account { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; }
     }
 }

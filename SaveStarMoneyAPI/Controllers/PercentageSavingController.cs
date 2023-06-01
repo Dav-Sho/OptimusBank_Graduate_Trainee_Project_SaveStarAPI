@@ -15,8 +15,8 @@ namespace SaveStarMoneyAPI.Controllers
             _percentageSavingRepo = percentageSavingRepo;
         }
 
-        [HttpPost("PercentageSavings")]
-        public async Task<ActionResult<ServiceResponse<GetPercentSavingDto>>> Saving(PercentSavingDto percentageSavingDto)
+        [HttpPost("PercentageSaving")]
+        public async Task<ActionResult<ServiceResponse<GetPercentSavingDto>>> PercentageSaving(PercentSavingDto percentageSavingDto)
         {
             return Ok(await _percentageSavingRepo.PercentageSaving(percentageSavingDto));
         }

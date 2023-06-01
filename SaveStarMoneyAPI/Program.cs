@@ -35,6 +35,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<FixedSavingRepo, FixedSavingService>();
 builder.Services.AddScoped<AccountRepo, AccountService>();
 builder.Services.AddScoped<PercentageSavingRepo, PercentageSavingService>();
+builder.Services.AddScoped<AccountDetailsRepo, AccountDetailsService>();
+builder.Services.AddScoped<GetFixedSavingDetailsRepo, GetFixedSavingsService>();
 
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

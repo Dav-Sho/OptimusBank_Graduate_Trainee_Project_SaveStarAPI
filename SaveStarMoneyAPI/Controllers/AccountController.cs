@@ -17,7 +17,7 @@ namespace SaveStarMoneyAPI.Controllers
         [HttpPost("Account")]
         public async Task<ActionResult<ServiceResponse<string>>> Register(AccountDto accountDto)
         {
-            var newUser = new Account { FirstName = accountDto.FirstName, Email = accountDto.Email, LastName = accountDto.LastName, AccountName = accountDto.FirstName + " " + accountDto.LastName };
+            var newUser = new Account { FirstName = accountDto.FirstName, Email = accountDto.Email, LastName = accountDto.LastName, AccountName = accountDto.FirstName + " " + accountDto.LastName, CurrentAccountBalance = accountDto.CurrentAccountBalance };
             return Ok(await _accountRepo.Account(newUser, accountDto.password));
         }
 
